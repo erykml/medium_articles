@@ -1,0 +1,6 @@
+# Jupyter Notebook checkpoint
+*.ipynb_checkpoints
+
+# video and frames
+*.mp4
+*.jpg
