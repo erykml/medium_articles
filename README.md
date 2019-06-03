@@ -8,3 +8,4 @@ Short scripts used for articles published on [Medium](https://medium.com/@eryk.l
 * [Explaining Feature Importance by example of a Random Forest](https://towardsdatascience.com/explaining-feature-importance-by-example-of-a-random-forest-d9166011959e)
 * [Outlier Detection with Isolation Forest](https://towardsdatascience.com/outlier-detection-with-isolation-forest-3d190448d45e)
 * [Outlier Detection with Extended Isolation Forest](https://towardsdatascience.com/outlier-detection-with-extended-isolation-forest-1e248a3fe97b)
+* [Explaining probability plots](https://towardsdatascience.com/explaining-probability-plots-9e5c5d304703)
