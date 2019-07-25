@@ -9,3 +9,5 @@ Short scripts used for articles published on [Medium](https://medium.com/@eryk.l
 * [Outlier Detection with Isolation Forest](https://towardsdatascience.com/outlier-detection-with-isolation-forest-3d190448d45e)
 * [Outlier Detection with Extended Isolation Forest](https://towardsdatascience.com/outlier-detection-with-extended-isolation-forest-1e248a3fe97b)
 * [Explaining probability plots](https://towardsdatascience.com/explaining-probability-plots-9e5c5d304703)
+* [Verifying the Assumptions of Linear Regression in Python and R](https://towardsdatascience.com/verifying-the-assumptions-of-linear-regression-in-python-and-r-f4cd2907d4c0)
+* [Introduction to dtplyr](https://towardsdatascience.com/introduction-to-dtplyr-783d89e9ae56)

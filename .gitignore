@@ -4,3 +4,9 @@
 # video and frames
 *.mp4
 *.jpg
+
+# pickle files
+*.pkl
+
+*.Rhistory
+
