@@ -1,0 +1,173 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction to `dtplyr`
+
+Learn how to easily combine `dplyr`'s readability with `data.table`'s performance!
+
+I recently saw a [Tweet](https://twitter.com/hadleywickham/status/1153763948447043584) by Hadley Wickham about the release of `dtplyr`. It is a package that enables working with `dplyr` syntax on `data.table` objects. It automatically translates the `dplyr` syntax to a `data.table` equivalent, which results in a performance boost. 
+Marvel: Infinity War is the most ambitious crossover event in history.
+Hadley Wickham: Hold my beer.
+
+I always liked the ease and readability of `dplyr` and was eager to compare the performance of the libraries. Let's see how it works in practice!
+
+## Loading libraries
+
+For this article, we need to install `dtplyr` from GitHub by running `devtools::install_github("tidyverse/dtplyr")` and we use `microbenchmark` for performance comparison.
+
+```{r install_packages, echo=FALSE}
+# install required packages 
+
+# install.packages("dplyr")
+# install.packages("data.table")
+# install.packages("devtools")
+# install.packages("microbenchmark")
+# devtools::install_github("tidyverse/dtplyr")
+```
+
+```{r}
+# import packages
+library(data.table)
+library(dtplyr)
+library(dplyr, warn.conflicts = FALSE)
+library(microbenchmark)
+library(stringi)
+```
+
+## Generating dataset
+
+In this article, we generate an artificial dataset. The first thing that came to my mind is an order registry, where we store:
+
+- id of the client
+- name of the product
+- date of purchase
+- amount of product purchased
+- unit price of a certain product 
+
+As this is only a toy example, we do not dive deeply into the logic behind the dataset, as we can agree that it vaguely resembles a real-life scenario. For testing the performance of different approaches, we generate 10 million rows of data.
+
+```{r}
+# specify size 
+n <- 1e7
+
+# generate data.table with random data
+data_dt <- data.table(id=stri_rand_strings(n, 3, pattern = "[A-Z]"),
+                      product=stri_rand_strings(n, 3, pattern = "[A-Z]"),
+                      date=sample(seq(as.Date('2019/01/01'), as.Date('2019/04/01'), by="day"), n, replace=TRUE),
+                      amount=sample(1:10000,n,replace=TRUE),
+                      price=rnorm(n, mean = 100, sd = 20))
+
+data_dt_lazy <- lazy_dt(data_dt)
+
+# convert to data.frame
+data_df <- as.data.frame(data_dt)
+```
+
+By using `lazy_dt()` we trigger the lazy evaluation - no computation is performed until we explicitly request it by using `as.data.table()`, `as.data.frame()` or `as_tibble()`. For the sake of comparison, we store one `data.frame`, one `data.table` and one "lazy" `data.table`.
+
+We can preview the transformation, as well as the generated `data.table` code by printing the result:
+
+```{r}
+data_dt_lazy %>% 
+    filter(amount < 500) %>% 
+    arrange(id)
+```
+But generally, this should be used for debugging. We should indicate what kind of object we want to receive at the end of the pipeline to clearly show that we are done with the transformations.
+
+## Use-case 1: Filtering, Selecting and Sorting
+
+Let's say we want to have a list of transactions that happened before `2019-02-01`, sorted by date, and we do not care about the amount or price. 
+
+```{r}
+mbm <- microbenchmark("dplyr" = { 
+                                    result_df <- data_df %>% 
+                                                 filter(date < as.Date('2019-02-01')) %>% 
+                                                 select(c(id, product, date)) %>% 
+                                                 arrange(date)
+                                },
+                       "data.table" = { 
+                                    result_dt <- data_dt[date < as.Date('2019-02-01'), .(id, product, date)][order(date)]
+                                },
+                       "dtplyr" = { 
+                                    result_dtplyr <- data_dt_lazy %>% 
+                                                     filter(date < as.Date('2019-02-01')) %>% 
+                                                     select(c(id, product, date)) %>% 
+                                                     arrange(date) %>%
+                                                     as.data.table()
+                                  })
+
+mbm
+```
+
+In this example, we want to filter orders with a number of products over 5000 and calculate the order value, which is `amount * price`.
+
+Most of the expressions using `mutate()` must make a copy (do not modify in-place), what would not be necessary when using `data.table` directly. To counter for that, we can specify `immutable = FALSE` in `lazy_dt()` to opt-out of the mentioned behavior.
+
+```{r}
+data_dt_lazy <- lazy_dt(data_dt, immutable=FALSE)
+
+mbm <- microbenchmark("dplyr" = { 
+                                    result_df <- data_df %>% 
+                                                 filter(amount >= 5000) %>% 
+                                                 mutate(order_value = amount * price) 
+                                },
+                       "data.table" = { 
+                                    result_dt <- data_dt[amount >= 5000][, order_value := amount * price]
+                                },
+                       "dtplyr" = { 
+                                    result_dtplyr <- data_dt_lazy %>% 
+                                                     filter(amount >= 5000) %>% 
+                                                     mutate(order_value = amount * price) %>% 
+                                                     as.data.table()
+                                  })
+
+mbm
+```
+
+## Use-case 3: Aggregation on top 
+
+Let's say we want to:
+
+1. Filter all orders on amount <= 4000
+2. Calculate the avg order value per customer 
+
+```{r}
+data_dt_lazy <- lazy_dt(data_dt, immutable=FALSE)
+
+mbm <- microbenchmark("dplyr" = { result_df <- data_df %>% 
+                                                  filter(amount <= 4000) %>% 
+                                                  mutate(order_value = amount * price) %>% 
+                                                  group_by(id) %>% 
+                                                  summarise(avg_order_value = mean(order_value)) 
+                                },
+                      "data.table" = { result_dt <- data_dt[amount <= 4000][, order_value := amount * price][, .(avg_order_value = mean(order_value)), keyby = id]
+                                     },
+                      "dtplyr" = { result_dtplyr <- data_dt_lazy %>% 
+                                                        filter(amount <= 4000) %>% 
+                                                        mutate(order_value = amount * price) %>% 
+                                                        group_by(id) %>% 
+                                                        summarise(avg_order_value = mean(order_value))  %>%
+                                                        as.data.table()
+                                  })
+
+mbm
+
+```
+
+## Conclusions
+
+`dtplyr` is (and always will be) slightly slower than `data.table`. Reasons why:
+
+1. Each `dplyr` verb must do some work to convert the `dplyr` syntax to a `data.table` equivalent. For large datasets, this should be negligible, as these translation operations take time proportional to the complexity of the input code, rather than amount of data.
+2. Some `data.table` expressions have no direct `dplyr` equivalent. 
+3. Immutability issue mentioned in use-case 2. 
+
+Summing up, I believe that `dtplyr` is a very good addition to the `tidyverse`, as with only small changes to the `dplyr` code, we can achieve significant performance improvments.
+
+As always, any constructive feebkac is welcome. You can reach out to me on [Twitter](https://twitter.com/erykml1) or in the comments. You can find the code used for this article on my [GitHub]().
+
