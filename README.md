@@ -11,3 +11,4 @@ Short scripts used for articles published on [Medium](https://medium.com/@eryk.l
 * [Explaining probability plots](https://towardsdatascience.com/explaining-probability-plots-9e5c5d304703)
 * [Verifying the Assumptions of Linear Regression in Python and R](https://towardsdatascience.com/verifying-the-assumptions-of-linear-regression-in-python-and-r-f4cd2907d4c0)
 * [Introduction to dtplyr](https://towardsdatascience.com/introduction-to-dtplyr-783d89e9ae56)
+* [One-tailed or two-tailed test, that is the question]()
