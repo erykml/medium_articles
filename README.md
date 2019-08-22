@@ -1,5 +1,6 @@
 # Medium articles
 Short scripts used for articles published on [Medium](https://medium.com/@eryk.lewinson)
+The latest versions of the texts can be found on Medium, the latest changes to the code are reflected in the notebooks/scripts.
 
 ## Articles
 * [Introduction to quantitative finance part I: Stylised facts of asset returns](https://towardsdatascience.com/introduction-to-quantitative-finance-part-i-stylised-facts-of-asset-returns-5190581e40ea)
@@ -11,4 +12,4 @@ Short scripts used for articles published on [Medium](https://medium.com/@eryk.l
 * [Explaining probability plots](https://towardsdatascience.com/explaining-probability-plots-9e5c5d304703)
 * [Verifying the Assumptions of Linear Regression in Python and R](https://towardsdatascience.com/verifying-the-assumptions-of-linear-regression-in-python-and-r-f4cd2907d4c0)
 * [Introduction to dtplyr](https://towardsdatascience.com/introduction-to-dtplyr-783d89e9ae56)
-* [One-tailed or two-tailed test, that is the question]()
+* [One-tailed or two-tailed test, that is the question](https://towardsdatascience.com/one-tailed-or-two-tailed-test-that-is-the-question-1283387f631c)
