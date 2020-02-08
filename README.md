@@ -11,6 +11,7 @@ The latest versions of the texts can be found on Medium, the latest changes to t
 * [Backtesting trading strategies using custom data in zipline](https://towardsdatascience.com/backtesting-trading-strategies-using-custom-data-in-zipline-e6fd65eeaca0)
 * [The easiest way to evaluate the performance of trading strategies in Python](https://towardsdatascience.com/the-easiest-way-to-evaluate-the-performance-of-trading-strategies-in-python-4959fd798bb3)
 * [Algorithmic trading based on Technical Analysis in Python](https://towardsdatascience.com/algorithmic-trading-based-on-technical-analysis-in-python-80d445dc6943)
+* [A comprehensive guide to downloading stock prices in Python](https://towardsdatascience.com/a-comprehensive-guide-to-downloading-stock-prices-in-python-2cd93ff821d4)
 
 ### Data Wrangling 
 * [Introduction to dtplyr](https://towardsdatascience.com/introduction-to-dtplyr-783d89e9ae56)
@@ -22,6 +23,7 @@ The latest versions of the texts can be found on Medium, the latest changes to t
 * [Outlier Detection with Isolation Forest](https://towardsdatascience.com/outlier-detection-with-isolation-forest-3d190448d45e)
 * [Outlier Detection with Extended Isolation Forest](https://towardsdatascience.com/outlier-detection-with-extended-isolation-forest-1e248a3fe97b)
 * [Outlier Detection with Hampel Filter](https://towardsdatascience.com/outlier-detection-with-hampel-filter-85ddf523c73d)
+* [Creating benchmark models the scikit-learn way](https://towardsdatascience.com/creating-benchmark-models-the-scikit-learn-way-af227f6ea977)
 
 ### Statistics
 * [Introduction to Power Analysis in Python](https://towardsdatascience.com/introduction-to-power-analysis-in-python-e7b748dfa26)
