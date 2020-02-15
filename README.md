@@ -24,6 +24,7 @@ The latest versions of the texts can be found on Medium, the latest changes to t
 * [Outlier Detection with Extended Isolation Forest](https://towardsdatascience.com/outlier-detection-with-extended-isolation-forest-1e248a3fe97b)
 * [Outlier Detection with Hampel Filter](https://towardsdatascience.com/outlier-detection-with-hampel-filter-85ddf523c73d)
 * [Creating benchmark models the scikit-learn way](https://towardsdatascience.com/creating-benchmark-models-the-scikit-learn-way-af227f6ea977)
+* [Ensemble learning using the Voting Classifier](https://levelup.gitconnected.com/ensemble-learning-using-the-voting-classifier-a28d450be64d)
 
 ### Statistics
 * [Introduction to Power Analysis in Python](https://towardsdatascience.com/introduction-to-power-analysis-in-python-e7b748dfa26)
