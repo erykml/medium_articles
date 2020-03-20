@@ -35,3 +35,5 @@ The latest versions of the texts can be found on Medium, the latest changes to t
 ### Misc
 * [Mario vs. Wario: Image Classification in Python](https://towardsdatascience.com/mario-vs-wario-image-classification-in-python-ae8d10ac6d63)
 * [Mario vs. Wario — round 2: CNNs in PyTorch and Google Colab](https://towardsdatascience.com/mario-vs-wario-round-2-cnns-in-pytorch-and-google-colab-48b968cf4ace)
+* [The easiest way to download YouTube videos using Python](https://towardsdatascience.com/the-easiest-way-to-download-youtube-videos-using-python-2640958318ab)
+* [A step-by-step introduction to Cohort Analysis in Python](https://towardsdatascience.com/a-step-by-step-introduction-to-cohort-analysis-in-python-a2cbbd8460ea)
