@@ -44,6 +44,9 @@ The latest versions of the texts can be found on Medium, the latest changes to t
 * [One-tailed or two-tailed test, that is the question](https://towardsdatascience.com/one-tailed-or-two-tailed-test-that-is-the-question-1283387f631c)
 * [Verifying the Assumptions of Linear Regression in Python and R](https://towardsdatascience.com/verifying-the-assumptions-of-linear-regression-in-python-and-r-f4cd2907d4c0)
 
+### Time Series
+* [5 types of plots that will help you with time series analysis](https://towardsdatascience.com/5-types-of-plots-that-will-help-you-with-time-series-analysis-b63747818705)
+* [An intuitive guide to differencing time series in Python](https://towardsdatascience.com/an-intuitive-guide-to-differencing-time-series-in-python-1d6c7a2c067a)
 
 
 
