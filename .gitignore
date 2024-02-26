@@ -12,4 +12,7 @@
 *.DS_store
 settings.json
 
+venv
+
+Quantitative Finance/api_keys.py
 
